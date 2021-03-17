@@ -1,0 +1,15 @@
+{
+  "name": "@brillout/vite-fix-2390",
+  "version": "0.0.2",
+  "bin": {
+    "vite-fix-2390": "cli.js"
+  },
+  "scripts": {
+    "// Post-install": "",
+    "postinstall": "node -e \"try{require('./postinstall.js')}catch(err){console.log('====== Warning ======');console.log(err);}\""
+  },
+  "repository": "https://github.com/brillout/vite-patch-2390",
+  "publishConfig": {
+    "access": "public"
+  }
+}
