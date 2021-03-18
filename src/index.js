@@ -1,1 +1,1 @@
-export { patchIsInstalled } from "./patch";
+export { assertPatch } from "./patch";

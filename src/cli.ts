@@ -1,2 +1,2 @@
-import { patchViteIssue2390 } from "./patch";
-patchViteIssue2390({ log: true });
+import { cli } from "./patch";
+cli();

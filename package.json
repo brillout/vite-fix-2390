@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "postinstall": "node -e \"try{require('./dist/postinstall.js')}catch(err){console.log('====== Warning ======');console.log(err);}\""
+    "postinstall": "node -e \"try{require('./dist/postinstall.js')}catch(err){console.error(err);}\""
   },
   "repository": "https://github.com/brillout/vite-fix-2390",
   "publishConfig": {
