@@ -1,6 +1,6 @@
 {
   "name": "@brillout/vite-fix-2390",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "bin": {
     "vite-fix-2390": "cli.js"
