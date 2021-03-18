@@ -1,7 +1,5 @@
-// @ts-check
-
-const { readFileSync, writeFileSync } = require("fs");
-const { dirname, join } = require("path");
+import { readFileSync, writeFileSync } from "fs";
+import { dirname, join } from "path";
 
 const PATCH_FILE = "dist/node/chunks/dep-efe32886.js";
 const PATCH_LINE = 23655;
@@ -9,16 +7,14 @@ const VITE_VERSION = "2.1.2";
 const PATCH_CONDITION = "importer.includes('node_modules')";
 const PATCH_NEW_CONDITION = "!source.includes('import.meta.glob')";
 
-Object.assign(module.exports, {
-  patchIsInstalled,
-  patchViteIssue2390,
-});
+export { patchIsInstalled };
+export { patchViteIssue2390 };
 
 function patchIsInstalled() {
   const { source } = getTarget();
   return alreadyPatched(source);
 }
-function alreadyPatched(source) {
+function alreadyPatched(source: string) {
   // Already patched
   return source.includes(PATCH_NEW_CONDITION);
 }
@@ -46,18 +42,18 @@ function getTarget() {
   return { targetFile, source };
 }
 
-function patchViteIssue2390() {
+function patchViteIssue2390({ log }: { log: boolean }) {
   const { source, targetFile } = getTarget();
 
   if (alreadyPatched(source)) {
-    console.log("Vite already patched.");
+    if (log) console.log("Vite already patched.");
     return;
   }
 
-  applyPatch(source, targetFile);
+  applyPatch(source, targetFile, log);
 }
 
-function applyPatch(source, targetFile) {
+function applyPatch(source: string, targetFile: string, log: boolean) {
   const lines = source.split(/\r?\n/);
   let line = lines[PATCH_LINE - 1];
   if (!line.includes(PATCH_CONDITION)) {
@@ -74,7 +70,7 @@ function applyPatch(source, targetFile) {
 
   writeFileSync(targetFile, sourcePatched, "utf8");
 
-  console.log("Vite successfully patched.");
+  if (log) console.log("Vite successfully patched.");
 }
 
 function patchError() {

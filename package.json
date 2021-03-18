@@ -1,15 +1,21 @@
 {
   "name": "@brillout/vite-fix-2390",
   "version": "0.0.2",
+  "main": "./dist/index.js",
   "bin": {
     "vite-fix-2390": "cli.js"
   },
   "scripts": {
-    "// Post-install": "",
-    "postinstall": "node -e \"try{require('./postinstall.js')}catch(err){console.log('====== Warning ======');console.log(err);}\""
+    "build": "tsc",
+    "postinstall": "node -e \"try{require('./dist/postinstall.js')}catch(err){console.log('====== Warning ======');console.log(err);}\""
   },
-  "repository": "https://github.com/brillout/vite-patch-2390",
+  "repository": "https://github.com/brillout/vite-fix-2390",
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "typescript": "^4.2.3",
+    "vite": "2.1.2"
   }
 }
