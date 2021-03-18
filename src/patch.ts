@@ -13,13 +13,16 @@ export { cli };
 export { postinstall };
 
 const projectName = "github.com:brillout/vite-fix-2390";
-const versionMismatchError = (installedVersion: string) =>
-  `[${projectName}][Warning] Couldn't apply patch. Only the Vite version \`${VITE_VERSION}\` is supported. Your vite version: \`${installedVersion}\`. Install \`vite@${VITE_VERSION}\` instead.`;
+const versionMismatchError = (
+  installedVersion: string,
+  errorType: "Warning" | "Error"
+) =>
+  `[${projectName}][${errorType}] Couldn't apply Vite patch. Only the Vite version \`${VITE_VERSION}\` is supported. Your vite version: \`${installedVersion}\`. Install \`vite@${VITE_VERSION}\` instead.`;
 
 function assertPatch() {
   const versionMismatch = isVersionMismatch();
   if (versionMismatch) {
-    throw new Error(versionMismatchError(versionMismatch));
+    throw new Error(versionMismatchError(versionMismatch, "Error"));
   }
   if (!isAlreadyPatched()) {
     throw new Error(
@@ -31,7 +34,7 @@ function assertPatch() {
 function cli() {
   const versionMismatch = isVersionMismatch();
   if (versionMismatch) {
-    throw new Error(versionMismatchError(versionMismatch));
+    throw new Error(versionMismatchError(versionMismatch, "Error"));
   }
   if (isAlreadyPatched()) {
     console.log("Vite already patched.");
@@ -44,7 +47,7 @@ function cli() {
 function postinstall() {
   const versionMismatch = isVersionMismatch();
   if (versionMismatch) {
-    console.warn(versionMismatchError(versionMismatch));
+    console.warn(versionMismatchError(versionMismatch, "Warning"));
     return;
   }
   applyPatch();
