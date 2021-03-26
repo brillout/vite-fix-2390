@@ -2,9 +2,9 @@ import { readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import assert = require("assert");
 
-const PATCH_FILE = "dist/node/chunks/dep-efe32886.js";
-const PATCH_LINE = 23655;
-const VITE_VERSION = "2.1.2";
+const PATCH_FILE = "dist/node/chunks/dep-0776dd57.js";
+const PATCH_LINE = 23668;
+const VITE_VERSION = "2.1.3";
 const PATCH_CONDITION = "importer.includes('node_modules')";
 const PATCH_NEW_CONDITION = "!source.includes('import.meta.glob')";
 
@@ -111,6 +111,6 @@ function applyPatch() {
 
 function patchError() {
   return new Error(
-    `[${projectName}][Internal Error] Could not patch vite. Contact @brillout on Discord or by opening a new GitHub issue.`
+    `[${projectName}][Internal Error] Could not patch vite. Contact @brillout on Discord or open a new GitHub issue.`
   );
 }
