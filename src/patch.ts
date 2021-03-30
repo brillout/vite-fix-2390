@@ -2,9 +2,9 @@ import { readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import assert = require("assert");
 
-const PATCH_FILE = "dist/node/chunks/dep-0776dd57.js";
-const PATCH_LINE = 23668;
-const VITE_VERSION = "2.1.3";
+const PATCH_FILE = "dist/node/chunks/dep-6e02b235.js";
+const PATCH_LINE = 23715;
+const VITE_VERSION = "2.1.4";
 const PATCH_CONDITION = "importer.includes('node_modules')";
 const PATCH_NEW_CONDITION = "!source.includes('import.meta.glob')";
 
